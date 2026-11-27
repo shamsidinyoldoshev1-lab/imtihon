@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyMate — Ta'lim va Bilimni Sinash Platformasi</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Asosiy Konteyner -->
+  <div class="app-wrapper">
+
+    <!-- Sahifa Sarlavhasi (Header) -->
+    <header class="app-header">
+      <div class="brand">
+        <span class="brand-icon">📚</span>
+        <div class="brand-text">
+          <h1 class="brand-title">StudyMate</h1>
+          <p class="brand-subtitle">O'rganish va bilimni sinash platformasi</p>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <!-- ================= 1-EKRAN: BOSH SAHIFA ================= -->
+      <section id="screen-home" class="screen active">
+        <!-- Mavzular Bo'limi -->
+        <div class="section-block">
+          <div class="section-header">
+            <h2 class="section-title">O'rganish uchun mavzuni tanlang</h2>
+            <p class="section-desc">Mavzuni tanlang, qisqa nazariya bilan tanishing va testni boshlang.</p>
+          </div>
+
+          <!-- 3 ta Mavzu Kartalari -->
+          <div id="topics-container" class="topics-grid">
+            <!-- JavaScript orqali generatsiya qilinadi -->
+          </div>
+
+          <!-- Tanlangan Mavzuning Tafsiloti (Preview) -->
+          <div id="topic-preview" class="topic-preview-card">
+            <div class="preview-header">
+              <span class="preview-badge" id="preview-category">Kategoriya</span>
+              <h3 class="preview-title" id="preview-title">Mavzu nomi</h3>
+            </div>
+            <div class="preview-body">
+              <div class="preview-item">
+                <h4 class="preview-item-title">📖 Mavzu haqida qisqacha:</h4>
+                <p class="preview-text" id="preview-summary"></p>
+              </div>
+              <div class="preview-item example-box">
+                <h4 class="preview-item-title">💡 Misol:</h4>
+                <p class="preview-example-text" id="preview-example"></p>
+              </div>
+            </div>
+            <div class="preview-action">
+              <button id="btn-start-quiz" class="btn btn-primary btn-large">
+                Testni boshlash (5 savol) →
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Oxirgi Natijalar Bo'limi -->
+        <div class="section-block history-section">
+          <div class="section-header">
+            <h3 class="section-title">🕒 Oxirgi natijalar</h3>
+            <p class="section-desc">localStorage'da saqlangan oxirgi 5 ta test natijasi</p>
+          </div>
+
+          <div id="recent-results-container" class="results-container">
+            <!-- JavaScript orqali to'ldiriladi yoki "Hali natija yo'q" chiqadi -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 2-EKRAN: TEST EKRANI ================= -->
+      <section id="screen-quiz" class="screen">
+        <div class="quiz-container">
+          <!-- Test Yuqori Paneli -->
+          <div class="quiz-top-bar">
+            <div class="quiz-meta">
+              <span id="quiz-topic-badge" class="badge">Mavzu</span>
+              <h2 id="quiz-topic-title" class="quiz-topic-heading">Kasrlar</h2>
+            </div>
+            <div class="quiz-progress-info">
+              <span id="quiz-counter" class="quiz-counter-text">Savol 1/5</span>
+            </div>
+          </div>
+
+          <!-- 5 Bo'lakli Progress Bar -->
+          <div class="segmented-progress" id="segmented-progress" aria-label="Jarayon ko'rsatkichi">
+            <div class="segment" data-step="1"></div>
+            <div class="segment" data-step="2"></div>
+            <div class="segment" data-step="3"></div>
+            <div class="segment" data-step="4"></div>
+            <div class="segment" data-step="5"></div>
+          </div>
+
+          <!-- Savol Kartasi -->
+          <div class="question-card">
+            <h3 id="question-text" class="question-title">Savol matni yuklanmoqda...</h3>
+
+            <!-- 4 ta Variant (A, B, C, D) -->
+            <div id="options-container" class="options-list">
+              <!-- JavaScript orqali render qilinadi -->
+            </div>
+          </div>
+
+          <!-- Test Pastki Boshqaruv Qismi -->
+          <div class="quiz-footer">
+            <span class="quiz-hint-text">💡 Kerakli variantni tanlang. Javobingizni keyingi savolga o'tguncha o'zgartirishingiz mumkin.</span>
+            <button id="btn-next-question" class="btn btn-primary" disabled>
+              Keyingi →
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 3-EKRAN: NATIJA EKRANI ================= -->
+      <section id="screen-result" class="screen">
+        <div class="result-container">
+          <!-- Asosiy Natija Kartasi -->
+          <div class="result-summary-card">
+            <div class="result-icon-wrapper" id="result-icon-wrapper">
+              🏆
+            </div>
+            <h2 class="result-heading" id="result-topic-name">Mavzu bo'yicha natija</h2>
+            <div class="result-score-box">
+              <span class="result-score-highlight" id="result-score-display">0/5 = 0%</span>
+            </div>
+            <p class="result-feedback-message" id="result-feedback-text">Natija hisoblanmoqda...</p>
+
+            <!-- Harakat Tugmalari -->
+            <div class="result-actions">
+              <button id="btn-restart-quiz" class="btn btn-primary">
+                🔄 Yana ishlash
+              </button>
+              <button id="btn-go-home" class="btn btn-secondary">
+                🏠 Bosh sahifa
+              </button>
+            </div>
+          </div>
+
+          <!-- Batafsil Savollar Tahlili -->
+          <div class="review-section">
+            <div class="review-header">
+              <h3 class="review-title">📋 Savollar bo'yicha batafsil tahlil</h3>
+              <p class="review-desc">Har bir savolga berilgan javobingiz va uning to'g'ri tushuntirishi:</p>
+            </div>
+
+            <div id="review-list" class="review-list">
+              <!-- JavaScript orqali savol tahlillari render qilinadi -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>© 2026 StudyMate — Mustaqil ta'lim va imtihon loyihasi. Sof HTML, CSS va JS asosida yaratilgan.</p>
+    </footer>
+  </div>
+
+  <!-- Skriptlar -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

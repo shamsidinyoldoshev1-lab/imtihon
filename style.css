@@ -1,0 +1,872 @@
+/* ==========================================================================
+   StudyMate - Zamonaviy, toza va to'liq moslashuvchan (Responsive) Dizayn
+   Sof CSS (hech qanday tashqi freymvork ishlatilmagan)
+   ========================================================================== */
+
+/* 1. Global o'zgaruvchilar (CSS Variables) */
+:root {
+  --primary: #4f46e5;          /* Asosiy aksent rang (Indigo) */
+  --primary-hover: #4338ca;    /* Tugma bosilgandagi quyuqroq tus */
+  --primary-light: #eef2ff;    /* Yengil ko'k fon */
+  --primary-border: #c7d2fe;   /* Mayin ko'k ramka */
+  
+  --bg-page: #f8fafc;          /* Sahifaning och fon rangi */
+  --bg-card: #ffffff;          /* Kartalar oq foni */
+  --bg-card-alt: #f1f5f9;      /* Misol va yordamchi bloklar foni */
+
+  --text-main: #0f172a;        /* To'q o'qilishi oson asosiy matn */
+  --text-muted: #64748b;       /* Ikkinchi darajali och matn */
+  --text-light: #94a3b8;       /* Yordamchi matn */
+
+  --border-color: #e2e8f0;     /* Umumiy chegaralar rangi */
+  --border-focus: #4f46e5;
+
+  --success-bg: #ecfdf5;       /* To'g'ri javob foni */
+  --success-text: #065f46;     /* To'g'ri javob matni */
+  --success-border: #10b981;   /* To'g'ri javob ramkasi */
+
+  --danger-bg: #fef2f2;        /* Xato javob foni */
+  --danger-text: #991b1b;      /* Xato javob matni */
+  --danger-border: #ef4444;    /* Xato javob ramkasi */
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.07);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.03);
+
+  --font-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* 2. Reset va Baza Uslublari */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-base);
+  background-color: var(--bg-page);
+  color: var(--text-main);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 3. Konteyner va Sahifa ramkasi */
+.app-wrapper {
+  max-width: 860px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* 4. Sarlavha (Header) */
+.app-header {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-icon {
+  font-size: 2rem;
+  background-color: var(--primary-light);
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--primary-border);
+}
+
+.brand-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1.2;
+}
+
+.brand-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* 5. Asosiy Maydon va Ekranlar almashinuvi */
+.main-content {
+  flex: 1;
+}
+
+.screen {
+  display: none; /* Standart holatda yashirin */
+}
+
+.screen.active {
+  display: block; /* Faol ekran ko'rinadi */
+  animation: fadeIn 0.25s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 6. Umumiy Tugmalar (Kamida 44px balandlik) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+  text-decoration: none;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: #ffffff;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:not(:disabled):hover {
+  background-color: var(--primary-hover);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background-color: #ffffff;
+  color: var(--text-main);
+  border-color: var(--border-color);
+}
+
+.btn-secondary:hover {
+  background-color: var(--bg-card-alt);
+  border-color: #cbd5e1;
+}
+
+.btn-large {
+  min-height: 48px;
+  font-size: 1.05rem;
+  width: 100%;
+}
+
+/* 7. Bo'lim Sarlavhalari */
+.section-block {
+  margin-bottom: 28px;
+}
+
+.section-header {
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.section-desc {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* 8. 1-EKRAN: Mavzular Kartalari (Grid) */
+.topics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.topic-card {
+  background-color: var(--bg-card);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 18px 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 120px;
+}
+
+.topic-card:hover {
+  border-color: #a5b4fc;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.topic-card.active {
+  border-color: var(--primary);
+  background-color: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+.topic-card-category {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--primary);
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.topic-card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.3;
+}
+
+.topic-card-footer {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topic-card-count {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  background-color: var(--bg-card-alt);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.topic-card.active .topic-card-count {
+  background-color: #ffffff;
+  color: var(--primary);
+}
+
+/* Tanlangan Mavzuning Tafsilotlar Kartasi (Preview) */
+.topic-preview-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 28px;
+}
+
+.preview-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.preview-badge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background-color: var(--primary-light);
+  color: var(--primary);
+  border: 1px solid var(--primary-border);
+}
+
+.preview-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.preview-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.preview-item-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.preview-text {
+  font-size: 0.98rem;
+  color: #334155;
+  line-height: 1.7;
+}
+
+.example-box {
+  background-color: var(--bg-card-alt);
+  border-left: 4px solid var(--primary);
+  padding: 14px 16px;
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.preview-example-text {
+  font-size: 0.95rem;
+  color: #1e293b;
+  font-family: inherit;
+}
+
+/* Oxirgi Natijalar (localStorage) */
+.history-section {
+  border-top: 1px solid var(--border-color);
+  padding-top: 24px;
+}
+
+.results-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.empty-history-text {
+  text-align: center;
+  padding: 24px;
+  background-color: var(--bg-card);
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.history-item {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background-color 0.15s ease;
+}
+
+.history-item:hover {
+  background-color: #f8fafc;
+}
+
+.history-item-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.history-topic-name {
+  font-weight: 700;
+  font-size: 0.98rem;
+  color: var(--text-main);
+}
+
+.history-date {
+  font-size: 0.8rem;
+  color: var(--text-light);
+}
+
+.history-badge {
+  font-size: 0.92rem;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background-color: var(--primary-light);
+  color: var(--primary);
+}
+
+.history-badge.perfect {
+  background-color: var(--success-bg);
+  color: var(--success-text);
+  border: 1px solid var(--success-border);
+}
+
+/* 9. 2-EKRAN: TEST EKRANI */
+.quiz-container {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.quiz-top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.quiz-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quiz-topic-heading {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.badge {
+  background-color: var(--primary-light);
+  color: var(--primary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+}
+
+.quiz-counter-text {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--primary);
+  background-color: var(--primary-light);
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+/* 5 Bo'lakli Progress Bar */
+.segmented-progress {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.segment {
+  flex: 1;
+  height: 8px;
+  background-color: var(--border-color);
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.segment.completed {
+  background-color: var(--primary);
+}
+
+.segment.current {
+  background-color: var(--primary);
+  opacity: 0.6;
+}
+
+/* Savol Kartasi */
+.question-card {
+  margin-bottom: 24px;
+}
+
+.question-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+/* Variantlar ro'yxati */
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.option-btn {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 16px;
+  background-color: #ffffff;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-size: 1rem;
+  color: var(--text-main);
+  text-align: left;
+  transition: all 0.18s ease;
+  user-select: none;
+}
+
+.option-btn:hover {
+  border-color: #a5b4fc;
+  background-color: #fbfbfe;
+}
+
+.option-letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-card-alt);
+  color: var(--text-muted);
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-right: 14px;
+  transition: all 0.18s ease;
+}
+
+.option-btn.selected {
+  border-color: var(--primary);
+  background-color: var(--primary-light);
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+}
+
+.option-btn.selected .option-letter {
+  background-color: var(--primary);
+  color: #ffffff;
+}
+
+.option-text {
+  flex: 1;
+  font-size: 0.98rem;
+  line-height: 1.4;
+}
+
+/* Test Pastki Qismi */
+.quiz-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border-color);
+  padding-top: 18px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.quiz-hint-text {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  flex: 1;
+  min-width: 220px;
+}
+
+/* 10. 3-EKRAN: NATIJA EKRANI */
+.result-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.result-summary-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.result-icon-wrapper {
+  font-size: 3.5rem;
+  margin-bottom: 12px;
+  line-height: 1;
+}
+
+.result-heading {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 12px;
+}
+
+.result-score-box {
+  margin-bottom: 14px;
+}
+
+.result-score-highlight {
+  display: inline-block;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--primary);
+  background-color: var(--primary-light);
+  padding: 8px 24px;
+  border-radius: var(--radius-md);
+  letter-spacing: 0.5px;
+}
+
+.result-feedback-message {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 500px;
+  margin: 0 auto 24px;
+}
+
+.result-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.result-actions .btn {
+  min-width: 180px;
+}
+
+/* Batafsil Tahlil Bo'limi */
+.review-section {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.review-header {
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.review-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.review-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.review-card {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  background-color: #ffffff;
+}
+
+.review-card.correct {
+  border-left: 5px solid var(--success-border);
+}
+
+.review-card.wrong {
+  border-left: 5px solid var(--danger-border);
+}
+
+.review-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.review-question-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+  flex: 1;
+}
+
+/* Aniq matnli belgilar (Faqat rang emas!) */
+.badge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.badge-status.correct {
+  background-color: var(--success-bg);
+  color: var(--success-text);
+  border: 1px solid var(--success-border);
+}
+
+.badge-status.wrong {
+  background-color: var(--danger-bg);
+  color: var(--danger-text);
+  border: 1px solid var(--danger-border);
+}
+
+.review-answers-box {
+  background-color: var(--bg-card-alt);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  font-size: 0.92rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.review-answer-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.review-answer-label {
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.user-answer.text-wrong {
+  color: var(--danger-text);
+  font-weight: 700;
+}
+
+.user-answer.text-correct {
+  color: var(--success-text);
+  font-weight: 700;
+}
+
+.correct-answer-text {
+  color: var(--success-text);
+  font-weight: 700;
+}
+
+.review-explanation {
+  font-size: 0.9rem;
+  color: #475569;
+  line-height: 1.5;
+  padding-left: 2px;
+}
+
+.explanation-label {
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+/* 11. Footer */
+.app-footer {
+  margin-top: 40px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--text-light);
+}
+
+/* ==========================================================================
+   12. Moslashuvchanlik (Responsive Design - 360px dan boshlab)
+   ========================================================================== */
+
+/* Kichik va o'rta ekranlar (Planshet va telefon) */
+@media (max-width: 768px) {
+  .topics-grid {
+    grid-template-columns: 1fr; /* Telefonda mavzular 1 ustunda */
+  }
+
+  .topic-card {
+    min-height: auto;
+  }
+
+  .topic-preview-card {
+    padding: 18px;
+  }
+
+  .quiz-container {
+    padding: 18px 14px;
+  }
+
+  .result-summary-card {
+    padding: 24px 16px;
+  }
+
+  .result-score-highlight {
+    font-size: 1.8rem;
+    padding: 6px 18px;
+  }
+
+  .result-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .result-actions .btn {
+    width: 100%;
+  }
+
+  .quiz-footer {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .quiz-footer .btn {
+    width: 100%;
+  }
+
+  .quiz-hint-text {
+    text-align: center;
+  }
+}
+
+/* O'ta tor telefon ekranlari (360px) */
+@media (max-width: 380px) {
+  .app-wrapper {
+    padding: 14px 10px;
+  }
+
+  .brand-title {
+    font-size: 1.3rem;
+  }
+
+  .question-title {
+    font-size: 1.1rem;
+  }
+
+  .option-btn {
+    padding: 10px 12px;
+  }
+
+  .option-letter {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    margin-right: 10px;
+  }
+
+  .review-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
